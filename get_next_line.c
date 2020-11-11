@@ -30,8 +30,7 @@ int		get_line(char **line, char **temp, char c)
 		if (pos == 0)//pos가 0이면 첫번째가 개행이거나 널이라는 소리이므로
 		{
 			*line = ft_strdup("\0");//빈문자열 넣고
-			if (len >= 1)// 빈문자열 들어왔을 떄 아래동작을 못하게  len이 1보다 크거나 같다는 조건을 달아놓음
-				*temp = ft_substr(*temp, 1, len - 1, 1);
+			*temp = ft_substr(*temp, 1, len - 1, 1);//temp는 한칸 뒤로 옮겨진다. 이때 이전 temp free해줘야 하므로 flag는 1
 		}
 		else//찾는 문자의 위치가 0번째가 아니라면
 		{
