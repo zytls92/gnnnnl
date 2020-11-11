@@ -12,19 +12,26 @@
 
 #define BUFF_SIZE 2
 #include "get_next_line.h"
+#include <stdio.h>
 
 int		get_line(char **line, char **temp, char c)
 {
 	int		pos;
 	int		len;
 
+	if (!(*temp))
+	{
+		*line = ft_strdup("\0");
+		return (0);
+	}
 	len = ft_strlen(*temp);
 	if ((pos = ft_strchr(*temp, c)) != -1)
 	{
 		if (pos == 0)
 		{
-			*line = ft_strdup("");
-			*temp = ft_substr(*temp, 1, len - 1, 1);
+			*line = ft_strdup("\0");
+			if (len > 1)
+				*temp = ft_substr(*temp, 1, len - 1, 1);
 		}
 		else
 		{
@@ -66,6 +73,8 @@ int		get_next_line(int fd, char **line)
 	{
 		get_line(line, &temp, '\0');
 		free(temp);
+		free(buf);
+		buf = 0;
 		temp = 0;
 		return (0);
 	}
