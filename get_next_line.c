@@ -19,7 +19,7 @@ int		get_line(char **line, char **temp, char c)
 	int		pos;
 	int		len;
 
-	if (!(*temp))// temp가 널이라는 것은 빈파일을 의미한다.
+	if (!(*temp))// temp가 널이라는 것은 빈파일을 의미한다. 왜냐하면 처음 66번 쨰 줄에서 이 함수를 시작할 땐 temp가 존재할 때 돌아가니까 절대 이곳으로 들어올 수 없고 res = 0일 때 실행해야 이것을 만족 할 수 있다. 
 	{
 		*line = ft_strdup("\0");//널문자를 가진 문자열을 line에 넣고
 		return (0);//0을 리턴한다.
